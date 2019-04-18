@@ -36,7 +36,7 @@ public class ChooseResultSv {
      * @param titleId
      * @param chooseAnswer
      */
-    public void findChooseResult(long titleId,String chooseAnswer){
+    public void findChooseResult(long titleId,String chooseAnswer,String userId){
         ChooseResult output = chooseResultDao.findByTitleId(titleId);
         if(output != null){
             chooseResultDao.update(titleId,chooseAnswer);
@@ -44,6 +44,7 @@ public class ChooseResultSv {
             ChooseResult result = new ChooseResult();
             result.setTitleId(titleId);
             result.setChooseAnswer(chooseAnswer);
+            result.setUserId(userId);
             chooseResultDao.save(result);
         }
     }
@@ -54,7 +55,7 @@ public class ChooseResultSv {
      * @return
      */
     public List<AnswerResult> checkData(String userId){
-        List<ChooseResult> chooseResults = chooseResultDao.findAll();
+        List<ChooseResult> chooseResults = chooseResultDao.findByUserId(userId);
         List<AnswerResult> output = new ArrayList<AnswerResult>();
         for(int i=0;i<chooseResults.size();i++){
             ChooseResult result = chooseResults.get(i);

@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import java.util.List;
+
 
 public interface ChooseResultDao extends JpaRepository<ChooseResult,Long> {
 
@@ -18,4 +20,7 @@ public interface ChooseResultDao extends JpaRepository<ChooseResult,Long> {
     @Modifying
     @Query(value = " delete  from  choose_result where user_id = ?1 ",nativeQuery = true)
     void delete(String userId);
+
+    @Query(value = " select * from choose_result where user_id =?1 ",nativeQuery = true)
+    List<ChooseResult> findByUserId(String userId);
 }

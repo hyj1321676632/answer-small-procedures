@@ -54,7 +54,8 @@ public class ExerciseController {
     @RequestMapping(value = "/exercise/submit")
     public String exerciseSubmit(@ModelAttribute("titleResult") ChooseResult chooseResult,Model model,HttpSession httpSession) {
         if(chooseResult.getChooseAnswer() != null){
-            chooseResultSv.findChooseResult(chooseResult.getTitleId(),chooseResult.getChooseAnswer());
+            String userId = httpSession.getAttribute("userId").toString();
+            chooseResultSv.findChooseResult(chooseResult.getTitleId(),chooseResult.getChooseAnswer(),userId);
         }
         model.addAttribute("testTitleList",httpSession.getAttribute("testTitleList"));
         model.addAttribute("pageNum",httpSession.getAttribute("pageNum"));
