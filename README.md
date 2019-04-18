@@ -44,6 +44,7 @@ create table test_title
     title_answer varchar2(10) not null,
     parse_text varchar2(255) not null
 )
+
 --创建序列
 
 create sequence test_title$seq
