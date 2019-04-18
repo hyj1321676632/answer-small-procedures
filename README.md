@@ -98,6 +98,7 @@ cache 20;
 create table choose_result
 (
        id number(10) primary key ,
+       user_id varchar2(255) not null,
        title_id number(10) ,
        choose_answer varchar(10) 
 )
