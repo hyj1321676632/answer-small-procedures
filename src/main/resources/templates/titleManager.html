@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>学习系统</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+</head>
+<body>
+<div class="box-header">
+    <h1 style="text-align: center">学习系统主页</h1>
+    <h5 style="height: 34px;">
+    </h5>
+</div>
+<div class="box-body">
+    <div class="col-md-1">
+        <h5><a href="/index">笔试练习</a></h5>
+        <h5><a href="/index/titleManager">错题集</a></h5>
+        <h5><a href="/index/notes">备忘录</a></h5>
+    </div>
+    <div class="col-md-9">
+        <h3>错题列表</h3>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th style="width: 45%">问题</th>
+                <th>解析</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="list:${falseTitleList}">
+                <td style="width: 45%" th:text="${list.titleHeader}"></td>
+                <td th:text="${list.parseText}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

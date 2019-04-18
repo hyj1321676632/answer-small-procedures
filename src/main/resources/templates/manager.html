@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员端</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+</head>
+<body>
+<div class="col-md-12">
+    <div class="box-header" style="text-align: center">
+        <h1>管理员界面</h1>
+    </div>
+    <div class="box-body">
+        <div class="col-md-1">
+            <h5><a href="/admin">试题录入</a></h5>
+            <h5><a href="/admin/manager">账号管理</a></h5>
+        </div>
+        <div class="col-md-9">
+            <h3>账号列表</h3>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>编号</th>
+                        <th>账号</th>
+                        <th>密码</th>
+                        <th>姓名</th>
+                        <th>学校</th>
+                        <th>性别</th>
+                        <th>角色</th>
+                        <th>注册时间</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="userInfo:${userInfoList}">
+                        <td scope="row" th:text="${userInfo.id}"></td>
+                        <td th:text="${userInfo.userId}"></td>
+                        <td th:text="${userInfo.userPassword}"></td>
+                        <td th:text="${userInfo.userName}"></td>
+                        <td th:text="${userInfo.userSchool}"></td>
+                        <td th:text="${userInfo.userSex}"></td>
+                        <td th:text="${userInfo.userRole}"></td>
+                        <td th:text="${userInfo.createDate}"></td>
+                        <td><a th:href="@{/delete(id=${userInfo.id})}">删除</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

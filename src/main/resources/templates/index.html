@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>学习系统</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+</head>
+<body>
+    <div class="box-header">
+        <h1 style="text-align: center">学习系统主页</h1>
+        <h5 style="position:relative;left: 75%;font-size: 15px;">
+            当前登录账号：<label th:text="${userId}"></label>
+            &nbsp;&nbsp;<button class="btn btn-default"><a href="/">退出</a></button>
+        </h5>
+    </div>
+    <div class="box-body">
+        <div class="col-md-1">
+            <h5><a href="/index">笔试练习</a></h5>
+            <h5><a href="/index/titleManager">错题集</a></h5>
+            <h5><a href="/index/notes">备忘录</a></h5>
+        </div>
+        <div class="col-md-9">
+            <form class="form-horizontal"   th:action="@{/choose/titles}" th:object="${userInfo}" method="post">
+                <div class="row">
+                    <div class="form-group col-sm-2">
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <label>出题来源：</label>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <input type="radio" name="titleSource" value="falseAndNew"  th:checked="${titleSource}" > 系统推荐
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <input type="radio" name="titleSource" value="onlyNew" checked="checked" th:checked="${titleSource}"> 只出新题
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <input type="radio" name="titleSource" value="onlyFalse" th:checked="${titleSource}"> 只出错题
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-2">
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <label>题目数量：</label>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <input type="radio" name="titleCount" value="5"  th:checked="${titleCount}" > 5题
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <input type="radio" name="titleCount" value="10" checked="checked" th:checked="${titleCount}"> 10题
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <input type="radio" name="titleCount" value="15" th:checked="${titleCount}"> 15题
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="text-center">
+                        <input type="submit" value="开始刷题" class="btn btn-primary" />&nbsp;&nbsp;
+                        <label style="color: red" th:text="${nullErrorTitle}"></label>
+                        <label style="color: red" th:text="${nullNewTitle}"></label>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

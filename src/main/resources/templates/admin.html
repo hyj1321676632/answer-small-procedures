@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>管理员端</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+</head>
+<body>
+<div class="col-md-12">
+    <div class="box-header" style="text-align: center">
+        <h1>管理员界面</h1>
+        <h5 style="font-size: 15px;">
+            当前登录账号：<label th:text="${userId}"></label>
+            &nbsp;&nbsp;<button class="btn btn-default"><a href="/">退出</a></button>
+        </h5>
+    </div>
+    <div class="box-body">
+        <div class="col-md-1">
+            <h5><a href="/admin">试题录入</a></h5>
+            <h5><a href="/admin/manager">账号管理</a></h5>
+        </div>
+        <div class="col-md-9">
+            <h3>录入试题</h3>
+            <form class="form-horizontal"   th:action="@{/admin/saveTitle}" th:object="${testTitle}" method="post">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th >问题</th>
+                            <th >选项A</th>
+                            <th >选项B</th>
+                            <th >选项C</th>
+                            <th >选项D</th>
+                            <th >答案</th>
+                            <th >解析</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td ><input th:type="text" th:value="${titleHeader}" name="titleHeader"></td>
+                            <td ><input th:type="text" th:value="${optionA}" name="optionA"></td>
+                            <td ><input th:type="text" th:value="${optionB}" name="optionB"></td>
+                            <td ><input th:type="text" th:value="${optionC}" name="optionC"></td>
+                            <td ><input th:type="text" th:value="${optionD}" name="optionD"></td>
+                            <td ><input th:type="text" th:value="${titleAnswer}" name="titleAnswer"></td>
+                            <td ><input th:type="text" th:value="${parseText}" name="parseText"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="text-center">
+                    <input type="submit" value="保存" class="btn btn-primary" /> <label style="color: green" th:text="${saveResult}" /><br>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

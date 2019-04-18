@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>学习系统</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+</head>
+<body>
+<div class="box-header">
+    <h1 style="text-align: center">学习系统主页</h1>
+    <h5 style="height: 34px;">
+    </h5>
+</div>
+<div class="box-body">
+    <div class="col-md-1">
+        <h5><a href="/index">笔试练习</a></h5>
+        <h5><a href="/index/titleManager">错题集</a></h5>
+        <h5><a href="/index/notes">备忘录</a></h5>
+    </div>
+    <div class="col-md-9">
+        <h3>添加笔记</h3>
+        <form class="form-horizontal"   th:action="@{/index/saveNotes}" th:object="${userNotes}" method="post">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th >笔记内容</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td ><textarea rows="3" th:value="${content}" name="content" style="width: 100%;"></textarea></td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="text-center">
+                <input type="submit" value="保存" class="btn btn-primary" />
+            </div>
+        </form>
+        <hr style="width: 100%;">
+        <br>
+        <h3>笔记列表</h3>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th style="width: 50px;">序号</th>
+                <th style="width: 180px;">创建时间</th>
+                <th >内容</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="list:${showAllNotes}">
+                <td style="width: 50px;" th:text="${list.id}"></td>
+                <td style="width: 180px;" th:text="${#dates.format(list.createDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
+                <td th:text="${list.content}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

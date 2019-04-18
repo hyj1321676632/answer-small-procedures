@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>题目</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+</head>
+<body>
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">测试结果</h3>
+                <h5 style="position:relative;left: 75%;font-size: 15px;">
+                    <button class="btn btn-default"><a href="/index">返回主页</a></button>
+                </h5>
+            </div>
+            <div class="box-body">
+                <div th:each="list:${answerResultList}">
+                    <label th:text="${list.titleId}"/><input type="hidden" name="titleId" th:value="${list.titleId}">
+                    <label th:text="${list.titleHeader}"/><br>
+                    <label>A.</label><label th:text="${list.optionA}"/><br>
+                    <label>B.</label><label th:text="${list.optionB}"/><br>
+                    <label>C.</label><label th:text="${list.optionC}"/><br>
+                    <label>D.</label><label th:text="${list.optionD}"/><br>
+                    <label>您的答案是:</label><label th:text="${list.answer}"/>&nbsp;&nbsp;<label>正确结果是:</label><label th:text="${list.titleAnswer}"/><br>
+                    <label>答题结果：</label><label th:text="${list.result}"/><br>
+                    <textarea rows="3" th:text="${list.parseText}" style="width: 50%;"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>题目</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+    <script th:src="@{/js/jquery-2.1.1.min.js}"></script>
+</head>
+<body>
+    <div class="col-md-12">
+        <div class="box">
+            <form class="form-horizontal"   th:action="@{/exercise/submit}" th:object="${titleResult}"   method="post">
+                <div class="box-header with-border">
+                    <h3 class="box-title" style="text-align:center;">开始答题</h3>
+                    <h5 style="height: 34px;">
+                    </h5>
+                </div>
+                <div class="box-body" style="padding-left:30%;"><br/>
+                    <div th:each="list:${testTitleList}">
+                        <label th:text="${pageNum+1}"/>.
+                        <label th:text="${list.titleHeader}" style="width: 60%;" /><br>
+                        <input type="radio" name="chooseAnswer" value="A" th:checked="${chooseAnswer}"><label th:text="${list.optionA}"/><br>
+                        <input type="radio" name="chooseAnswer" value="B" th:checked="${chooseAnswer}"><label th:text="${list.optionB}"/><br>
+                        <input type="radio" name="chooseAnswer" value="C" th:checked="${chooseAnswer}"><label th:text="${list.optionC}"/><br>
+                        <input type="radio" name="chooseAnswer" value="D" th:checked="${chooseAnswer}"><label th:text="${list.optionD}"/>
+                        <input type="hidden" name="titleId" th:value="${list.titleId}">
+                    </div>
+                    <table style="margin-top:10px;">
+                        <tr>
+                            <td>
+                                <input class="title-start" type="submit" style="position: absolute; opacity: 0; filter:Alpha(opacity=0);" />
+                                <a th:href="@{/choose/titles(pageNum=0)}" class="title-start-a">首页</a>
+                            </td>
+                            <td th:switch="${pageNum}">
+                                <input class="title-prev" type="submit" style="position: absolute; opacity: 0; filter:Alpha(opacity=0);" />
+                                <p th:case="0"> <a th:href="@{/choose/titles(pageNum=0)}" class="title-prev-a">上一题</a></p>
+                                <p th:case="*"><a th:href="@{/choose/titles(pageNum=(${pageNum}-1))}" class="title-prev-a">上一题</a></p>
+                            </td>
+                            <td th:switch="${pageNum}">
+                                <input class="title-next" type="submit" style="position: absolute; opacity: 0; filter:Alpha(opacity=0);" />
+                                <p th:case="(${totalPages}-1)"><a th:href="@{/choose/titles(pageNum=(${totalPages}-1))}" class="title-next-a">下一题</a></p>
+                                <p th:case="*"><a th:href="@{/choose/titles(pageNum=${pageNum+1})}" class="title-next-a">下一题</a></p>
+                            </td>
+                            <td>
+                                <input class="title-end" type="submit" style="position: absolute; opacity: 0; filter:Alpha(opacity=0);" />
+                                <a th:href="@{/choose/titles(pageNum=(${totalPages}-1))}" class="title-end-a">尾页</a>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="box-footer">
+                    <div class="text-center">
+                        <button class="btn btn-default"><a href="/exercise/over">结束答题</a></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <section>
+        <script>
+            $(".title-start").click(function () {
+                $(".title-start-a")[0].click();
+            })
+            $(".title-prev").click(function () {
+                $(".title-prev-a")[0].click();
+            })
+            $(".title-next").click(function () {
+                $(".title-next-a")[0].click();
+            })
+            $(".title-end").click(function () {
+                $(".title-end-a")[0].click();
+            })
+        </script>
+    </section>
+</body>
+</html>
