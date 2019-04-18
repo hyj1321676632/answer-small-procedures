@@ -26,5 +26,7 @@ public class UserNotesSv {
         return userNotesDao.findAll();
     }
 
-
+    public List<UserNotes> findByUserId(String userId){
+        return userNotesDao.findByUserId(userId);
+    }
 }

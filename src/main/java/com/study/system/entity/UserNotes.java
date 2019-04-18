@@ -7,14 +7,16 @@ import java.util.Date;
 @Table(name = "user_notes")
 public class UserNotes {
     private long id;
+    private String userId;
     private String content;
     private Date createDate;
 
     public UserNotes() {
     }
 
-    public UserNotes(long id, String content, Date createDate) {
+    public UserNotes(long id, String userId, String content, Date createDate) {
         this.id = id;
+        this.userId = userId;
         this.content = content;
         this.createDate = createDate;
     }
@@ -29,6 +31,15 @@ public class UserNotes {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    @Column(name = "user_id")
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     @Column(name = "content")

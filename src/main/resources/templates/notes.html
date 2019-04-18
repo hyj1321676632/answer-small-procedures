@@ -42,14 +42,12 @@
         <table class="table table-hover">
             <thead>
             <tr>
-                <th style="width: 50px;">序号</th>
                 <th style="width: 180px;">创建时间</th>
                 <th >内容</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="list:${showAllNotes}">
-                <td style="width: 50px;" th:text="${list.id}"></td>
                 <td style="width: 180px;" th:text="${#dates.format(list.createDate, 'yyyy-MM-dd HH:mm:ss')}"></td>
                 <td th:text="${list.content}"></td>
             </tr>

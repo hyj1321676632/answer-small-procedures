@@ -49,20 +49,23 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/index/notes")
-    public ModelAndView titleNotes(){
+    public ModelAndView titleNotes(HttpSession httpSession){
+        String userId = httpSession.getAttribute("userId").toString();
         ModelAndView mode = new ModelAndView();
-        List<UserNotes> output = userNotesSv.findAll();
+        List<UserNotes> output = userNotesSv.findByUserId(userId);
         mode.addObject("showAllNotes",output);
         mode.setViewName("/notes");
         return mode;
     }
 
     @RequestMapping(value = "/index/saveNotes")
-    public ModelAndView saveNotes(@ModelAttribute("userNotes") @Validated UserNotes userNotes){
+    public ModelAndView saveNotes(@ModelAttribute("userNotes") @Validated UserNotes userNotes,HttpSession httpSession){
         ModelAndView mode = new ModelAndView();
+        String userId = httpSession.getAttribute("userId").toString();
         userNotes.setCreateDate(new Date());
+        userNotes.setUserId(userId);
         userNotesSv.save(userNotes);
-        List<UserNotes> output = userNotesSv.findAll();
+        List<UserNotes> output = userNotesSv.findByUserId(userId);
         mode.addObject("showAllNotes",output);
         mode.setViewName("/notes");
         return mode;
