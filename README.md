@@ -79,7 +79,7 @@ cache 20;
 create table user_notes
 (
   id number(10) primary key,
-  user_id number(10) not null,
+  user_id varchar2(255) not null,
   content varchar2(255),
   create_date Date
 )
