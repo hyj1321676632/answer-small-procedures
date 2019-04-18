@@ -53,9 +53,11 @@ public class ExerciseController {
 
     @RequestMapping(value = "/exercise/submit")
     public String exerciseSubmit(@ModelAttribute("titleResult") ChooseResult chooseResult,Model model,HttpSession httpSession) {
+        String userId = httpSession.getAttribute("userId").toString();
         if(chooseResult.getChooseAnswer() != null){
-            String userId = httpSession.getAttribute("userId").toString();
             chooseResultSv.findChooseResult(chooseResult.getTitleId(),chooseResult.getChooseAnswer(),userId);
+        }else{
+            chooseResultSv.findChooseResult(chooseResult.getTitleId(),"未选择",userId);
         }
         model.addAttribute("testTitleList",httpSession.getAttribute("testTitleList"));
         model.addAttribute("pageNum",httpSession.getAttribute("pageNum"));
@@ -102,12 +104,14 @@ public class ExerciseController {
             pageNum="0";
         }
         int pagenum=Integer.parseInt(pageNum);
-        model.addAttribute("testTitleList",pages.getContent().get(Integer.parseInt(pageNum)));
+//        model.addAttribute("testTitleList",pages.getContent().get(Integer.parseInt(pageNum)));
+        model.addAttribute("testTitleList",pages.getContent().get(0));
         model.addAttribute("pageNum",pagenum);
         model.addAttribute("totalPages",pages.getTotalPages());
         model.addAttribute("totalElements",pages.getTotalElements());
         //存入sesssion
-        httpSession.setAttribute("testTitleList", pages.getContent().get(Integer.parseInt(pageNum)));
+//        httpSession.setAttribute("testTitleList", pages.getContent().get(Integer.parseInt(pageNum)));
+        httpSession.setAttribute("testTitleList", pages.getContent().get(0));
         httpSession.setAttribute("pageNum", pagenum);
         httpSession.setAttribute("totalPages", pages.getTotalPages());
         httpSession.setAttribute("totalElements", pages.getTotalElements());

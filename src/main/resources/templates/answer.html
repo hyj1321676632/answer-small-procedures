@@ -22,8 +22,9 @@
                     <label>B.</label><label th:text="${list.optionB}"/><br>
                     <label>C.</label><label th:text="${list.optionC}"/><br>
                     <label>D.</label><label th:text="${list.optionD}"/><br>
-                    <label>您的答案是:</label><label th:text="${list.answer}"/>&nbsp;&nbsp;<label>正确结果是:</label><label th:text="${list.titleAnswer}"/><br>
+                    <label>您的答案是:</label><label th:text="${list.answer}"/>&nbsp;&nbsp;<label>正确答案是:</label><label th:text="${list.titleAnswer}"/><br>
                     <label>答题结果：</label><label th:text="${list.result}"/><br>
+                    <label>答案解析如下：</label><br>
                     <textarea rows="3" th:text="${list.parseText}" style="width: 50%;"></textarea>
                 </div>
             </div>
