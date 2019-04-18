@@ -16,6 +16,6 @@ public interface ChooseResultDao extends JpaRepository<ChooseResult,Long> {
     void update(long titleId,String chooseAnswer);
 
     @Modifying
-    @Query(value = " delete  from  choose_result",nativeQuery = true)
-    void delete();
+    @Query(value = " delete  from  choose_result where user_id = ?1 ",nativeQuery = true)
+    void delete(String userId);
 }

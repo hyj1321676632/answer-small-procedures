@@ -27,8 +27,8 @@ public class ChooseResultSv {
         chooseResultDao.save(chooseResult);
     }
 
-    public void delete(){
-        chooseResultDao.delete();
+    public void delete(String userId){
+        chooseResultDao.delete(userId);
     }
 
     /**

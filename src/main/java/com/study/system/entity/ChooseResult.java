@@ -8,14 +8,16 @@ public class ChooseResult {
 
     private long id;
     private long titleId;
+    private String userId;
     private String chooseAnswer;
 
     public ChooseResult() {
     }
 
-    public ChooseResult(long id, long titleId, String chooseAnswer) {
+    public ChooseResult(long id, long titleId, String userId, String chooseAnswer) {
         this.id = id;
         this.titleId = titleId;
+        this.userId = userId;
         this.chooseAnswer = chooseAnswer;
     }
 
@@ -38,6 +40,15 @@ public class ChooseResult {
 
     public void setTitleId(long titleId) {
         this.titleId = titleId;
+    }
+
+    @Column(name = "user_id")
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     @Column(name = "choose_answer")

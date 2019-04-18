@@ -32,7 +32,7 @@ public class IndexController {
     public ModelAndView index(HttpServletRequest request, HttpSession httpSession){
         ModelAndView mode = new ModelAndView();
         String userId = httpSession.getAttribute("userId").toString();
-        chooseResultSv.delete();
+        chooseResultSv.delete(userId);
         mode.addObject("userId",userId);
         mode.setViewName("/index");
         return mode;

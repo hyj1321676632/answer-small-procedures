@@ -44,7 +44,7 @@ public class LoginController {
             }else {
                 mode.setViewName("/index");
                 //删除答题记录表中数据
-                chooseResultSv.delete();
+                chooseResultSv.delete(userId);
             }
         }else{
             mode.addObject("loginError","登录失败！" );
