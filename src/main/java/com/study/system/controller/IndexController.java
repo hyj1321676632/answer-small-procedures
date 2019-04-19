@@ -1,11 +1,10 @@
 package com.study.system.controller;
 
 import com.study.system.entity.TestTitle;
-import com.study.system.entity.UserInfo;
 import com.study.system.entity.UserNotes;
-import com.study.system.service.ChooseResultSv;
 import com.study.system.service.UserNotesSv;
 import com.study.system.service.UserTitleSv;
+import com.study.system.util.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.List;
 
@@ -27,18 +24,18 @@ public class IndexController {
     private UserNotesSv userNotesSv;
 
     @RequestMapping(value = "/index")
-    public ModelAndView index(HttpServletRequest request, HttpSession httpSession){
+    public ModelAndView index(){
         ModelAndView mode = new ModelAndView();
-        String userId = httpSession.getAttribute("userId").toString();
+        String userId = SessionUtil.getUserId();
         mode.addObject("userId",userId);
         mode.setViewName("/index");
         return mode;
     }
 
     @RequestMapping(value = "/index/titleManager")
-    public ModelAndView titleManager(HttpServletRequest request, HttpSession httpSession){
+    public ModelAndView titleManager(){
         ModelAndView mode = new ModelAndView();
-        String userId = httpSession.getAttribute("userId").toString();
+        String userId = SessionUtil.getUserId();
         List<TestTitle> output = userTitleSv.findFalseTitleList(userId);
         mode.addObject("falseTitleList",output);
         mode.setViewName("/titleManager");
@@ -46,8 +43,8 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/index/notes")
-    public ModelAndView titleNotes(HttpSession httpSession){
-        String userId = httpSession.getAttribute("userId").toString();
+    public ModelAndView titleNotes(){
+        String userId = SessionUtil.getUserId();
         ModelAndView mode = new ModelAndView();
         List<UserNotes> output = userNotesSv.findByUserId(userId);
         mode.addObject("showAllNotes",output);
@@ -56,9 +53,9 @@ public class IndexController {
     }
 
     @RequestMapping(value = "/index/saveNotes")
-    public ModelAndView saveNotes(@ModelAttribute("userNotes") @Validated UserNotes userNotes,HttpSession httpSession){
+    public ModelAndView saveNotes(@ModelAttribute("userNotes") @Validated UserNotes userNotes){
         ModelAndView mode = new ModelAndView();
-        String userId = httpSession.getAttribute("userId").toString();
+        String userId = SessionUtil.getUserId();
         userNotes.setCreateDate(new Date());
         userNotes.setUserId(userId);
         userNotesSv.save(userNotes);

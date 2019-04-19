@@ -102,9 +102,9 @@ public class ExerciseController {
 
 
     @RequestMapping(value = "/exercise/over")
-    public ModelAndView exerciseOver(HttpSession httpSession){
+    public ModelAndView exerciseOver(){
         ModelAndView model = new ModelAndView();
-        String userId = httpSession.getAttribute("userId").toString();
+        String userId = SessionUtil.getUserId();
         List<AnswerResult> output = chooseResultSv.checkData(userId);
         model.addObject("answerResultList",output);
         model.setViewName("/answer");

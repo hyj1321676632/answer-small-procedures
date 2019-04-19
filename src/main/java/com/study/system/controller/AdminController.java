@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -25,9 +24,9 @@ public class AdminController {
     private UserInfoSv userInfoSv;
 
     @RequestMapping(value = "/admin")
-    public ModelAndView admin(HttpSession httpSession){
+    public ModelAndView admin(){
         ModelAndView mode = new ModelAndView();
-        String userId = httpSession.getAttribute("userId").toString();
+        String userId = SessionUtil.getUserId();
         mode.addObject("userId",userId);
         mode.setViewName("/admin");
         return mode;
