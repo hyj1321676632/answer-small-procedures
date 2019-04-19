@@ -4,6 +4,7 @@ import com.study.system.entity.TestTitle;
 import com.study.system.entity.UserInfo;
 import com.study.system.service.TestTitleSv;
 import com.study.system.service.UserInfoSv;
+import com.study.system.util.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -43,21 +44,12 @@ public class AdminController {
 
     @RequestMapping(value = "/admin/saveTitle")
     public ModelAndView save(@ModelAttribute("testTitle") @Validated TestTitle testTitle, BindingResult rs) {
-        ModelAndView mode = new ModelAndView();
+        ModelAndView model = new ModelAndView();
         testTitleSv.save(testTitle);
-        mode.addObject("saveResult","保存成功！" );
-        mode.setViewName("/admin");
-        return mode;
+        model.addObject("saveResult","保存成功！" );
+        model.setViewName("/admin");
+        return model;
     }
-
-//    @RequestMapping(value = "/admin/findUserInfo")
-//    public ModelAndView findUserInfo(){
-//        ModelAndView mode = new ModelAndView();
-//        List<UserInfo> output = userInfoSv.findAll();
-//        mode.addObject("userInfoList",output);
-//        mode.setViewName("/admin");
-//        return mode;
-//    }
 
     @RequestMapping("/delete")
     public ModelAndView delete(Long id) {

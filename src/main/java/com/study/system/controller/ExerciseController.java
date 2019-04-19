@@ -6,6 +6,7 @@ import com.study.system.entity.TestTitle;
 import com.study.system.entity.UserTitle;
 import com.study.system.service.ChooseResultSv;
 import com.study.system.service.UserTitleSv;
+import com.study.system.util.SessionUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -31,25 +32,6 @@ public class ExerciseController {
     public String index() {
         return "exercise";
     }
-
-//    @RequestMapping(value = "/choose/titles")
-//    public ModelAndView changeTitles(@RequestParam(value = "titleSource", required = false, defaultValue = "onlyNew") String titleSource,
-//                                     @RequestParam(value = "titleCount", required = false, defaultValue = "10") String titleCount,
-//                                     HttpServletRequest request, HttpSession httpSession) {
-//        ModelAndView mode = new ModelAndView();
-//        String userId = httpSession.getAttribute("userId").toString();
-//        List<TestTitle> output =null;
-//        if (titleSource.equals("falseAndNew")) {
-//            output = userTitleSv.findByfalseAndNew(userId,titleCount);
-//        } else if (titleSource.equals("onlyNew")) {
-//            output = userTitleSv.findByOnlyNew(userId,titleCount);
-//        } else if (titleSource.equals("onlyFalse")) {
-//            output = userTitleSv.findByOnlyFalse(userId,titleCount);
-//        }
-//        mode.addObject("testTitleList", output);
-//        mode.setViewName("exercise");
-//        return mode;
-//    }
 
     @RequestMapping(value = "/exercise/submit")
     public String exerciseSubmit(@ModelAttribute("titleResult") ChooseResult chooseResult,Model model,HttpSession httpSession) {
