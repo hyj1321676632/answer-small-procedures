@@ -1,5 +1,6 @@
 package com.study.system.service;
 
+import com.study.system.config.LoginInterceptor;
 import com.study.system.dao.UserInfoDao;
 import com.study.system.entity.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ public class UserInfoSv {
     }
 
     public UserInfo checkData(UserInfo userInfo){
+        if(userInfo == null)
+            return null;
         String userId = userInfo.getUserId();
         String password = userInfo.getUserPassword();
         UserInfo output=userInfoDao.selectData(userId,password);

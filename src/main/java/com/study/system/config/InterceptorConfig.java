@@ -6,9 +6,17 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 
 @Configuration
 public class InterceptorConfig extends WebMvcConfigurationSupport {
+
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/study-system/**");
+        /**
+         * 添加拦截路径
+         */
+        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/admin/**");
+        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/exercise/**");
+        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/index/**");
+        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/choose/**");
+        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/delete/**");
         super.addInterceptors(registry);
     }
 }
