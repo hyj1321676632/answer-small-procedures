@@ -18,3 +18,8 @@ spring:
     servlet:
       content-type: text/html
     cache: false
+
+logging:
+  config: classpath:logs/logback.xml
+  level:
+    root: info
