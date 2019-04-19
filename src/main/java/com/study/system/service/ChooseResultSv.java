@@ -22,6 +22,8 @@ public class ChooseResultSv {
     private TestTitleDao testTitleDao;
     @Autowired
     private UserTitleSv userTitleSv;
+    @Autowired
+    private ChooseResultSv chooseResultSv;
 
     public void save(ChooseResult chooseResult){
         chooseResultDao.save(chooseResult);
@@ -88,6 +90,8 @@ public class ChooseResultSv {
             }
             userTitleSv.updateUserTitle(userId,titleId,testResult);
         }
+        //删除答题记录表中数据
+        chooseResultSv.delete(userId);
         return output;
     }
 }

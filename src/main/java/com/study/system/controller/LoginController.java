@@ -19,8 +19,6 @@ public class LoginController {
 
     @Autowired
     private UserInfoSv userInfoSv;
-    @Autowired
-    private ChooseResultSv chooseResultSv;
 
     @RequestMapping(value = "/")
     public String login(){
@@ -43,8 +41,6 @@ public class LoginController {
                 mode.setViewName("/admin");
             }else {
                 mode.setViewName("/index");
-                //删除答题记录表中数据
-                chooseResultSv.delete(userId);
             }
         }else{
             mode.addObject("loginError","登录失败！" );
