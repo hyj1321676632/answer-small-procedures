@@ -2,19 +2,23 @@ package com.study.system.config;
 
 import com.study.system.entity.UserInfo;
 import com.study.system.service.UserInfoSv;
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+@Component
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 
-//    @Autowired
-//    private UserInfoSv userInfoSv;
+    @Autowired
+    private UserInfoSv userInfoSv;
 
     @Override
     public boolean preHandle(HttpServletRequest request,
@@ -25,16 +29,21 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
             response.sendRedirect(request.getContextPath() + "/");
             return Boolean.FALSE;
         }
-//        else{
-//            UserInfo userInfo = new UserInfo();
-//            userInfo.setUserId(usernameParam.toString());
-//            userInfo.setUserPassword(pwdParam.toString());
-//            UserInfo checkResult = this.userInfoSv().checkData(userInfo);
-//            if(checkResult==null){
-//                response.sendRedirect(request.getContextPath() + "/");
-//                return Boolean.FALSE;
-//            }
-//        }
+        else{
+            UserInfo userInfo = new UserInfo();
+            userInfo.setUserId(usernameParam.toString());
+            userInfo.setUserPassword(pwdParam.toString());
+            if (userInfoSv == null) {
+                //解决service为null无法注入问题
+                BeanFactory factory = WebApplicationContextUtils.getRequiredWebApplicationContext(request.getServletContext());
+                userInfoSv = (UserInfoSv) factory.getBean("userInfoSv");
+            }
+            UserInfo checkResult = userInfoSv.checkData(userInfo);
+            if(checkResult==null){
+                response.sendRedirect(request.getContextPath() + "/");
+                return Boolean.FALSE;
+            }
+        }
         return true;
     }
 }
