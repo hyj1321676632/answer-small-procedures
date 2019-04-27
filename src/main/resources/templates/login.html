@@ -12,7 +12,8 @@
         <form action="#" th:action="@{/check}" th:object="${userInfo}" method="post">
             <label th:text="#{login.username}"></label>:<input type="text" th:placeholder="#{login.username}" th:value="${userId}" name="userId" /><br>
             <label th:text="#{login.password}"></label>:<input type="password" th:placeholder="#{login.password}" th:value="${userPassword}" name="userPassword" /><br>
-            <label style="color: red" th:text="${loginError}" /><br>
+            <!--判断不为空时生成label标签-->
+            <label style="color: red" th:text="${loginError}" th:if="${not #strings.isEmpty(loginError)}" /><br>
             <a th:href="@{/(language='zh_CN')}">中文</a>
             <a th:href="@{/(language='en_US')}">English</a><br>
             <button class="btn btn-default"><a href="/register" th:text="#{login.register}"></a></button>
