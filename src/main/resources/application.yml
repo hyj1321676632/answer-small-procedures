@@ -18,6 +18,8 @@ spring:
     servlet:
       content-type: text/html
     cache: false
+  messages:
+    basename: i18n.login
 logging:
   config: classpath:logs/logback.xml
   level:

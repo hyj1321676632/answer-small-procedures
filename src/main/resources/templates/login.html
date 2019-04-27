@@ -7,12 +7,16 @@
 </head>
 <body>
     <div style="text-align: center">
+        <!--添加国际化语言-->
+        <h2 th:text="#{login.tip}"></h2>
         <form action="#" th:action="@{/check}" th:object="${userInfo}" method="post">
-            <label>用户名：</label><input type="text" th:value="${userId}" name="userId" /><br>
-            <label>密码：</label><input type="password" th:value="${userPassword}" name="userPassword" /><br>
+            <label th:text="#{login.username}"></label>:<input type="text" th:placeholder="#{login.username}" th:value="${userId}" name="userId" /><br>
+            <label th:text="#{login.password}"></label>:<input type="password" th:placeholder="#{login.password}" th:value="${userPassword}" name="userPassword" /><br>
             <label style="color: red" th:text="${loginError}" /><br>
-            <button class="btn btn-default"><a href="/register">注册账号</a></button>
-            <input type="submit" value="登录" class="btn btn-primary" />
+            <a th:href="@{/(language='zh_CN')}">中文</a>
+            <a th:href="@{/(language='en_US')}">English</a><br>
+            <button class="btn btn-default"><a href="/register" th:text="#{login.register}"></a></button>
+            <input type="submit" th:value="#{login.login}" class="btn btn-primary" />
         </form>
     </div>
 </body>

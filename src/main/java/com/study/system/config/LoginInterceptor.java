@@ -2,10 +2,9 @@ package com.study.system.config;
 
 import com.study.system.entity.UserInfo;
 import com.study.system.service.UserInfoSv;
+import com.sun.org.apache.bcel.internal.generic.FADD;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.context.support.WebApplicationContextUtils;
@@ -28,8 +27,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter {
         if (StringUtils.isEmpty(usernameParam) || StringUtils.isEmpty(pwdParam)) {
             response.sendRedirect(request.getContextPath() + "/");
             return Boolean.FALSE;
-        }
-        else{
+        }else{
             UserInfo userInfo = new UserInfo();
             userInfo.setUserId(usernameParam.toString());
             userInfo.setUserPassword(pwdParam.toString());

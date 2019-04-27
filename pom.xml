@@ -16,6 +16,10 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
+		<!-- 布局功能的支持程序  thymeleaf3主程序  layout2以上版本 -->
+		<!-- thymeleaf2   layout1-->
+		<!--<thymeleaf-layout-dialect.version>2.2.2</thymeleaf-layout-dialect.version>-->
 	</properties>
 
 	<dependencies>
@@ -53,6 +57,18 @@
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 
+		<!--引入webjars-->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.4.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>4.1.0</version>
+		</dependency>
+
 		<!--添加lombok-->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -64,12 +80,6 @@
 			<groupId>com.auth0</groupId>
 			<artifactId>java-jwt</artifactId>
 			<version>3.3.0</version>
-		</dependency>
-
-		<!-- 导入hibernate验证包 -->
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-validator</artifactId>
 		</dependency>
 
 		<dependency>
