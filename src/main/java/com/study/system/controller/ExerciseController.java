@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -54,7 +55,14 @@ public class ExerciseController {
                                      @RequestParam(value="pageNum",defaultValue = "0") String pageNum,Model model,
                                      HttpServletRequest request, HttpSession httpSession) {
         String userId = httpSession.getAttribute("userId").toString();
-
+        if(StringUtils.isEmpty(titleSource)){
+            model.addAttribute("nullNewTitle","出题来源没有选择！");
+            return "index";
+        }
+        if(StringUtils.isEmpty(titleCount)){
+            model.addAttribute("nullNewTitle","出题数量没有选择！");
+            return "index";
+        }
         if(titleSource != null){
             httpSession.setAttribute("titleSource", titleSource);
         }else{
