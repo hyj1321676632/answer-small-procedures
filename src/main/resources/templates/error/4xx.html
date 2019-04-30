@@ -5,12 +5,13 @@
     <title>[[${status}]]</title>
 </head>
 <body>
+<!--具体参考DefaultErrorAttributes类中的信息-->
     <h1>状态码:[[${status}]]</h1>
     <h2>调用时间:[[${timestamp}]]</h2>
     <h2>error:[[${error}]]</h2>
-    <h2>Exception:[[${exception}]]</h2>
+    <h2>path:[[${path}]]</h2>
     <h2>message:[[${message}]]</h2>
     <!--JSR303数据校验的错误都在这里-->
-    <h2>errors:[[${errors}]]</h2>
+    <!--<h2>errors:[[${errors}]]</h2>-->
 </body>
 </html>
