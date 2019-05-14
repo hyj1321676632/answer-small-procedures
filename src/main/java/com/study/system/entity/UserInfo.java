@@ -1,11 +1,12 @@
 package com.study.system.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(name = "user_info")
-public class UserInfo {
+public class UserInfo implements Serializable {
     private long id;
     private String userId;
     private String userPassword;

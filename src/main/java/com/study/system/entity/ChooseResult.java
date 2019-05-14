@@ -1,10 +1,11 @@
 package com.study.system.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="choose_result")
-public class ChooseResult {
+public class ChooseResult implements Serializable {
 
     private long id;
     private long titleId;
