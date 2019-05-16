@@ -22,6 +22,15 @@
 		<!--<thymeleaf-layout-dialect.version>2.2.2</thymeleaf-layout-dialect.version>-->
 	</properties>
 
+	<repositories>
+		<repository>
+			<id>alimaven</id>
+			<name>aliyun maven</name>
+			<url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+		</repository>
+
+	</repositories>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -49,6 +58,8 @@
 			<groupId>ojdbc6</groupId>
 			<artifactId>com.oracle</artifactId>
 			<version>11.2.0.3</version>
+			<!--<scope>system</scope>-->
+			<!--<systemPath>${project.basedir}/libs/ojdbc6.jar</systemPath>-->
 		</dependency>
 
 		<!--引入前端模板-->
@@ -92,6 +103,19 @@
 			<groupId>net.sourceforge.jexcelapi</groupId>
 			<artifactId>jxl</artifactId>
 			<version>2.6.12</version>
+		</dependency>
+
+		<!--memcache-->
+		<!--<dependency>-->
+			<!--<groupId>commons-pool</groupId>-->
+			<!--<artifactId>commons-pool</artifactId>-->
+			<!--<version>1.5.6</version>-->
+		<!--</dependency>-->
+
+		<dependency>
+			<groupId>com.whalin</groupId>
+			<artifactId>Memcached-Java-Client</artifactId>
+			<version>3.0.2</version>
 		</dependency>
 
 	</dependencies>
