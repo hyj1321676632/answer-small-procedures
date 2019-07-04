@@ -58,8 +58,8 @@
 			<groupId>ojdbc6</groupId>
 			<artifactId>com.oracle</artifactId>
 			<version>11.2.0.3</version>
-			<!--<scope>system</scope>-->
-			<!--<systemPath>${project.basedir}/libs/ojdbc6.jar</systemPath>-->
+			<scope>system</scope>
+			<systemPath>${project.basedir}/libs/ojdbc6.jar</systemPath>
 		</dependency>
 
 		<!--引入前端模板-->
