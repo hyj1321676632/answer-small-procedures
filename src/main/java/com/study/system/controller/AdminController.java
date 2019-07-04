@@ -4,7 +4,7 @@ import com.study.system.entity.TestTitle;
 import com.study.system.entity.UserInfo;
 import com.study.system.service.TestTitleSv;
 import com.study.system.service.UserInfoSv;
-import com.study.system.util.SessionUtil;
+import com.study.system.util.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -26,7 +26,7 @@ public class AdminController {
     @RequestMapping(value = "/admin")
     public ModelAndView admin(){
         ModelAndView mode = new ModelAndView();
-        String userId = SessionUtil.getUserId();
+        String userId = SessionUtils.getUserId();
         mode.addObject("userId",userId);
         mode.setViewName("/admin");
         return mode;

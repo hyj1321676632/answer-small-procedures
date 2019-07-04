@@ -5,7 +5,7 @@ spring:
     driver-class-name: oracle.jdbc.driver.OracleDriver
     url: jdbc:oracle:thin:@127.0.0.1:1521/orcl
     username: system
-    password: Hyj888888
+    password: ENC(XFsdCGvYl/Cfr4RBm3jJZhFOA6MbwA33)
   jpa:
     database: oracle
     properties.hibernate.dialect: org.hibernate.dialect.Oracle10gDialect
@@ -35,3 +35,6 @@ memcache:
   nagle: false
   socketTO: 3000
   aliveCheck: true
+#jasypt:
+#  encryptor:
+#    password: hyj

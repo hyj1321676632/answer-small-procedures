@@ -1,7 +1,9 @@
 package com.study.system.config;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 @Configuration
@@ -12,11 +14,27 @@ public class InterceptorConfig extends WebMvcConfigurationSupport {
         /**
          * 添加拦截路径
          */
-        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/admin/**");
-        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/exercise/**");
-        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/index/**");
-        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/choose/**");
-        registry.addInterceptor(new LoginInterceptor()).addPathPatterns("/delete/**").excludePathPatterns("**/css/**","**/js/**");
+        registry.addInterceptor(loginInterceptor()).addPathPatterns("/admin/**");
+        registry.addInterceptor(loginInterceptor()).addPathPatterns("/exercise/**");
+        registry.addInterceptor(loginInterceptor()).addPathPatterns("/index/**");
+        registry.addInterceptor(loginInterceptor()).addPathPatterns("/choose/**");
+        registry.addInterceptor(loginInterceptor()).addPathPatterns("/delete/**");
         super.addInterceptors(registry);
+    }
+
+    @Override
+    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+        /**
+         * 解决静态资源被拦截问题
+         */
+        registry.addResourceHandler("/**")
+                .addResourceLocations("classpath:/resources/")
+                .addResourceLocations("classpath:/static/");
+        super.addResourceHandlers(registry);
+    }
+
+    @Bean
+    public LoginInterceptor loginInterceptor() {
+        return new LoginInterceptor();
     }
 }

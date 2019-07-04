@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class SessionUtil {
+public class SessionUtils {
 
     static HttpSession httpSession = null;
 

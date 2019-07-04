@@ -6,7 +6,7 @@ import com.study.system.entity.TestTitle;
 import com.study.system.entity.UserTitle;
 import com.study.system.service.ChooseResultSv;
 import com.study.system.service.UserTitleSv;
-import com.study.system.util.SessionUtil;
+import com.study.system.util.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -112,7 +112,7 @@ public class ExerciseController {
     @RequestMapping(value = "/exercise/over")
     public ModelAndView exerciseOver(){
         ModelAndView model = new ModelAndView();
-        String userId = SessionUtil.getUserId();
+        String userId = SessionUtils.getUserId();
         List<AnswerResult> output = chooseResultSv.checkData(userId);
         model.addObject("answerResultList",output);
         model.setViewName("/answer");

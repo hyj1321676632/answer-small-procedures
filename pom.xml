@@ -105,6 +105,21 @@
 			<version>2.6.12</version>
 		</dependency>
 
+		<!-- token -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.9.0</version>
+		</dependency>
+
+		<!-- 密码加密 -->
+		<dependency>
+			<groupId>com.github.ulisesbocchio</groupId>
+			<artifactId>jasypt-spring-boot-starter</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+
+
 		<!--memcache-->
 		<!--<dependency>-->
 			<!--<groupId>commons-pool</groupId>-->

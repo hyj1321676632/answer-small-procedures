@@ -2,7 +2,7 @@ package com.study.system.controller;
 
 import com.study.system.entity.UserInfo;
 import com.study.system.service.UserInfoSv;
-import com.study.system.util.SessionUtil;
+import com.study.system.util.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
@@ -21,7 +21,7 @@ public class LoginController {
     @RequestMapping(value = "/")
     public String login(){
         //销毁session信息，返回登录页
-        SessionUtil.destroySesson();
+        SessionUtils.destroySesson();
         return "login";
     }
 
@@ -33,7 +33,7 @@ public class LoginController {
             String userId = userInfo.getUserId();
             String password = userInfo.getUserPassword();
             //将用户保存到session中
-            SessionUtil.setSession(userId,password,request);
+            SessionUtils.setSession(userId,password,request);
             mode.addObject("userId",userId);
             String role = checkResult.getUserRole();
             if(role.equals("admin")){

@@ -4,7 +4,7 @@ import com.study.system.entity.TestTitle;
 import com.study.system.entity.UserNotes;
 import com.study.system.service.UserNotesSv;
 import com.study.system.service.UserTitleSv;
-import com.study.system.util.SessionUtil;
+import com.study.system.util.SessionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.annotation.Validated;
@@ -26,7 +26,7 @@ public class IndexController {
     @RequestMapping(value = "/index")
     public ModelAndView index(){
         ModelAndView mode = new ModelAndView();
-        String userId = SessionUtil.getUserId();
+        String userId = SessionUtils.getUserId();
         mode.addObject("userId",userId);
         mode.setViewName("/index");
         return mode;
@@ -35,7 +35,7 @@ public class IndexController {
     @RequestMapping(value = "/index/titleManager")
     public ModelAndView titleManager(){
         ModelAndView mode = new ModelAndView();
-        String userId = SessionUtil.getUserId();
+        String userId = SessionUtils.getUserId();
         List<TestTitle> output = userTitleSv.findFalseTitleList(userId);
         mode.addObject("falseTitleList",output);
         mode.setViewName("/titleManager");
@@ -44,7 +44,7 @@ public class IndexController {
 
     @RequestMapping(value = "/index/notes")
     public ModelAndView titleNotes(){
-        String userId = SessionUtil.getUserId();
+        String userId = SessionUtils.getUserId();
         ModelAndView mode = new ModelAndView();
         List<UserNotes> output = userNotesSv.findByUserId(userId);
         mode.addObject("showAllNotes",output);
@@ -55,7 +55,7 @@ public class IndexController {
     @RequestMapping(value = "/index/saveNotes")
     public ModelAndView saveNotes(@ModelAttribute("userNotes") @Validated UserNotes userNotes){
         ModelAndView mode = new ModelAndView();
-        String userId = SessionUtil.getUserId();
+        String userId = SessionUtils.getUserId();
         userNotes.setCreateDate(new Date());
         userNotes.setUserId(userId);
         userNotesSv.save(userNotes);
